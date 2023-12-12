@@ -8,12 +8,14 @@ char _getline(void);
 {
 	char *line = NULL;
 	size_t size = 0;
+	size_t g;
 
-	if (isatty(STDOUT_FILENO))
+	if (isatty(STDIN_FILENO) == 1)
 	{
-		write(STDOUT_FILENO, "$", 2);
+		  _putchar("#cisfun$ ");
 	}
-	if (getline(&line, &size, stdin) == -1)
+	g = getline(&line, &size, stdin);
+	if (g == -1)
 	{
 		free(line);
 		return (NULL);
