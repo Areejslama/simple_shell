@@ -13,7 +13,7 @@ char _getline(void);
 	{
 		write(STDOUT_FILENO, "$", 2);
 	}
-	if (getline(&line, &size, stdin)== -1)
+	if (getline(&line, &size, stdin) == -1)
 	{
 		free(line);
 		return (NULL);
