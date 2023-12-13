@@ -1,24 +1,37 @@
 #include <shell.h>
 /**
- * getline- delim the string
- *
+ * main- this is entry point
+ * @argc:argu count
+ * @argv:argu vector
  * Return:0 Always
 */
-char _getline(void);
+int main(int argc, char *argv[])
 {
+	char *n;
 	char *line = NULL;
 	size_t size = 0;
-	size_t g;
+	ssize_t g = 0;
 
-	if (isatty(STDIN_FILENO) == 1)
+	(void) argc;
+	n = argv[0];
+
+	while (1)
 	{
-		  write(STDIN_FILENO, "$ ", 2);
+		if (isatty(STDIN_FILENO) == 1)
+			write(STDIN_FILENO, "$ ", 2);
+		g = getline(&line, &size, stdin);
+		if (g == -1)
+		{
+			if (isatty(STDIN_FILENO) == 1)
+				write(STDIN_FILENO, "\n", 1);
+			break;
+		}
+
+		if (line[g - 1]  == '\n')
+			line[g - 1]  = '\0';
+		if (*line == '\0')
+			continue;
 	}
-	g = getline(&line, &size, stdin);
-	if (g == -1)
-	{
-		free(line);
-		return (NULL);
-	}
-	return (line);
-}
+	free(line);
+	line = NULL;
+	return (0);
