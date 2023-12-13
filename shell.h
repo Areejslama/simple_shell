@@ -15,7 +15,7 @@ char *_strcpy(char *dest, char *src);
 char *_strcat(char *dest, char *src);
 char *_strncpy(char *dest, char *src, int n);
 int _strcmp(char *s1, char *s2);
-void print(void);
+char *print_command(void);
 
 #endif
 

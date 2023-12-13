@@ -1,14 +1,21 @@
 #include "shell.h"
 /**
- * print- print the prompet
+ * print_command- print the prompet
  *
  * Return:0 ALWAYS
 */
-void print(void)
+char *print_command(void)
 {
+	char *line = NULL;
+	size_t size = 0;
+	ssize_t p;
 
-if (isatty(STDIN_FILENO))
-{
-write(STDIN_FILENO, "$ ", 2);
-}
+	if (isatty(STDIN_FILENO))
+	p = getline(&line, &size, stdin);
+	if (p == -1)
+	{
+		free(line);
+		return (NULL);
+	}
+	return (line);
 }
