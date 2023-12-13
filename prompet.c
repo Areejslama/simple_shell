@@ -11,11 +11,12 @@ char *print_command(void)
 	ssize_t p;
 
 	if (isatty(STDIN_FILENO))
-	p = getline(&line, &size, stdin);
-	if (p == -1)
+		write(STDOUT_FILENO, "$ ", 2);
+
+	if (getline(&line, &size, stdin) == -1)
 	{
 		free(line);
 		return (NULL);
 	}
-	return (line);
+	return (lineptr);
 }
